@@ -1,0 +1,47 @@
+menu "Alarm Configuration"
+
+    config ALARM_TEMP_ON_C
+        int "Temperature alarm on threshold (C)"
+        range 1 50
+        default 35
+        help
+            Temperatura na kojoj uslov za alarm postaje aktivan
+
+    config ALARM_TEMP_OFF_C
+        int "Temperature alarm clear threshold (C)"
+        range 0 49
+        default 33
+        help
+            Temperatura ispod koje se uslov gasi
+
+    config ALARM_CO_ON_MV
+        int "CO on threshold (mV at GPIO34)"
+        range 1 3100
+        default 900
+        help
+            Napon na kojem se CO smatra detektovanim
+
+    config ALARM_CO_OFF_MV
+        int "CO clear threshold (mV at GPIO34)"
+        range 0 3099
+        default 750
+        help
+            Napon ispod kojeg se CO vise ne smatra detektovanim
+
+    config ALARM_CO_WARMUP_S
+        int "CO sensor warm-up time (s)"
+        range 0 600
+        default 60
+        help
+            Vreme nakon pokretanja tokom kojeg se CO merenja ignorisu
+
+    config ALARM_SIMULATION
+        bool "Test simulation (fake sensor values, real LED)"
+        default n
+        help
+            Umesto pravih senzora, alarm dobija unapred zadate vrednosti
+            temperature i CO koje prolaze kroz sve slucajeve
+            Za svaki korak se proverava stvarni nivo na
+            LED pinu i u monitoru se ispisuje PASS/FAIL
+
+endmenu
